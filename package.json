@@ -12,5 +12,8 @@
   "engines": ["node >= 0.2.0"],
   "modules": {
     "index": "./lib/couch-client.js",
+  },
+  "dependencies": {
+    "underscore": ">=1.1.2",
   }
 }
