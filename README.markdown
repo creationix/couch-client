@@ -36,6 +36,16 @@ Once you put data in the database, it's nice to be able to load it back out.  Th
       // Now you have the document or error if there was trouble
     });
 
+### `CouchClient.view(path, obj, callback)` - Call a view
+
+`view` takes a path to a view, an object containing GET parameters, and a callback
+
+    Users.view('/users/_design/design_name/_view/usernames', {key: "creationix"}, function(err, doc) {
+        // Now you have the document(s) or error if there was trouble
+    });
+
+If `obj` is missing then it returns all the items in the view.
+
 ### `CouchClient.remove(key/doc, callback)` - Remove a document
 
 Sometimes you want to remove documents from the database.  This function takes either a key as a string or a document with an `_id` property.  It will tell couch to delete it and give you back the modified document with the `_deleted` property.
