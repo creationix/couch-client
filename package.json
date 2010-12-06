@@ -13,7 +13,4 @@
   "modules": {
     "index": "./lib/couch-client.js",
   },
-  "dependencies": {
-    "underscore": ">=1.1.2",
-  }
 }
