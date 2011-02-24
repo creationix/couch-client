@@ -19,6 +19,8 @@ This object will internally keep track of revisions it's seen before and batches
 
 The resulting object has the following four functions (`save`, `get`, `remove`, `request`);
 
+The default port is 5984.
+
 ### `CouchClient.save(doc, callback)` - Save a document
 
 Pass in a document and it will save it to the database.  If the document happens to have a `_id` property that that will be used as the key.  Also if the document has a `_rev` property, that will be passed to the server.  If they are missing, CouchClient will provide an automatic UUID using CouchDB's services and look up the latest revision.  Revisions are remembered.
@@ -72,3 +74,24 @@ Also if you omit the callback an `EventEmitter` object that emits `"data"`, `"en
 ### `CouchClient.changes(since, callback)` - Watch for changes to the database.
 
 CouchDB provides a neat feature known as the `_changes` feed.  This allows you do watch a database and be notified when it's changed.  The `changes()` function is a wrapper.  You give it the `since` parameter and a callback.  The callback is called once per JSON document in the response stream.
+
+
+## Testing
+
+The basicTests file currently tests a;
+* local couchdb instance, with no authorization setup. 
+* couchone instance with authorization at https://couch-client.couchone.com/_utils couch-client:testingonly
+
+
+### Adding Tests
+
+Add tests to the basicTests.js file. Test function names need to start with 'test'.
+    
+	testSomething:function() {
+		// testing something
+	},
+
+
+## Contributing
+
+* please include tests with your pull requests.

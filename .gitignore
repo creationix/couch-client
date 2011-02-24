@@ -1,0 +1,4 @@
+couchdb.stderr
+couchdb.stdout
+*.swp
+**/*.swp
