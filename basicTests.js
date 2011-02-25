@@ -1,4 +1,5 @@
 var CouchClient = require('./lib/couch-client');
+var assert = require('assert');
 
 ({
 	run:function() {
@@ -71,10 +72,9 @@ var CouchClient = require('./lib/couch-client');
 		});
 	},
 
-
 	testCouchOne:function() 
 	{
-		var db = CouchClient('http://couch-client:testingonly@couch-client.couchone.com:80/test');
+		var db = CouchClient('http://couch-client.couchone.com:80/test');
 		
 		db.request("PUT", "/test", function (err, result) {
 			if (err) throw err;
@@ -106,7 +106,7 @@ var CouchClient = require('./lib/couch-client');
 
 	testCouchOneSSL:function() 
 	{
-		var db = CouchClient('https://couch-client:testingonly@couch-client.couchone.com:443/test');
+		var db = CouchClient('https://couch-client.couchone.com:443/test');
 		
 		db.request("PUT", "/test", function (err, result) {
 			if (err) throw err;
@@ -133,5 +133,27 @@ var CouchClient = require('./lib/couch-client');
 				});
 			});
 		});
-	}
+	},
+	
+	testBasicAuthFailsWhenUsingHttp: function() {
+		var db = CouchClient('http://couch-client:testingonly@couch-client.couchone.com:80/');
+		db.view('/secure/does/not/exist', function (err, result) {
+			if (err) throw err;
+			assert.deepEqual(
+			   {error: 'unauthorized', reason: 'You are not authorized to access this db.'}, 
+			   result
+			);
+		});
+	},
+
+	testBasicAuthWorksWhenUsingHttps: function()  {
+		var db = CouchClient('https://couch-client:testingonly@couch-client.couchone.com:443/');
+		db.view('/secure/does/not/exist', function (err, result) {
+			if (err) throw err;
+			assert.deepEqual(
+			   {error: 'not_found', reason: 'missing'}, 
+			   result
+			);
+		});
+	}	
 }).run();
