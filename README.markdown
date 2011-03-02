@@ -95,3 +95,19 @@ Add tests to the basicTests.js file. Test function names need to start with 'tes
 ## Contributing
 
 * please include tests with your pull requests.
+
+
+## Changes from 0.0.3 -> 0.0.4
+
+* view improvements / fixes
+* basic auth support
+
+
+### Contributors
+
+flashingpumpkin
+dready92
+devioustree
+hij1nx
+steelThread
+candland

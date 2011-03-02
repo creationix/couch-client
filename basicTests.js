@@ -135,12 +135,12 @@ var assert = require('assert');
 		});
 	},
 	
-	testBasicAuthFailsWhenUsingHttp: function() {
+	testBasicAuthWorksWhenUsingHttp: function() {
 		var db = CouchClient('http://couch-client:testingonly@couch-client.couchone.com:80/');
 		db.view('/secure/does/not/exist', function (err, result) {
 			if (err) throw err;
 			assert.deepEqual(
-			   {error: 'unauthorized', reason: 'You are not authorized to access this db.'}, 
+			   {error: 'not_found', reason: 'missing'}, 
 			   result
 			);
 		});
