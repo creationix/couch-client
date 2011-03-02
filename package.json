@@ -9,8 +9,6 @@
     "url": "http://github.com/creationix/couch-client.git"
   },
   "bugs": "http://github.com/creationix/couch-client/issues",
-  "engines": ["node >= 0.2.0"],
-  "modules": {
-    "index": "./lib/couch-client.js"
-  },
+  "engines": ["node >= 0.4.0"],
+  "main": "./lib/couch-client.js"
 }
