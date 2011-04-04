@@ -43,6 +43,24 @@ var assert = require('assert');
 		});
 	},
 
+	testLocalDefaultsWithCustomHeaders:function() 
+	{
+		var db = CouchClient('/test2');
+		
+		db.request("PUT", "/test2", function (err, result) {
+			if (err) throw err;
+			db.request("PUT", "/test2%2fdoc" , "[{}, {Content-Type: 'text/plain'}]", function (err, result) {
+				if (err) throw err;
+				db.request("PUT", "/test2%2fdoc" , "[{'key': 'value'}, {Content-Type: 'something/something'}]", function (err, result) {
+					if (err) throw err;
+					db.request("PUT", "/test2%2fdoc" , "{'key': 'value'}", function (err, result) {
+						if (err) throw err;
+					});
+				});
+			});
+		});
+	},
+
 	testRemoveObject:function() 
 	{
 		var db = CouchClient('/test');
