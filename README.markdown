@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/creationix/couch-client.png)](http://travis-ci.org/creationix/couch-client)
 # Couch Client
 
 Couch Client is a simple wrapper around CouchDB's http interface.
